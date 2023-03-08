@@ -1,12 +1,15 @@
 {
   "name": "Pancake-Chicken",
   "version": "1.0.0",
-  "description": "A Discord bot featuring a game called Tiny Creatures.",
+  "description": "A Discord bot featuring a Tamagotchi-like game called Tiny Creatures.",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],
   "author": "Connie Huang",
-  "license": "MIT"
+  "license": "MIT",
+  "dependencies": {
+    "discord.js": "^14.7.1"
+  }
 }

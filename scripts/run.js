@@ -1,6 +1,7 @@
+// To run the bot, enter:
 // node scripts/run.js
 
-// Import the necessary classes from the 'discord.js' library
+// Import necessary classes from the 'discord.js' library
 const { Client, GatewayIntentBits } = require('discord.js');
 
 // Create a new instance of the Client class with specific intents
@@ -19,13 +20,21 @@ client.on("ready", () => {
 
 // Listen for messages and respond to 'ping' messages with 'pong'
 client.on("messageCreate", (message) => {
-  if (message.author.bot) return; // Ignore messages sent by bots
+
+  // Ignore messages sent by bots
+  if (message.author.bot) return;
+
+  // Logs message in console
   console.log("Message received:", message.content);
-  if (typeof message.content !== "string") return; // Only respond to text messages
-  if (message.content.trim().startsWith("ping")) { // Check if the message starts with 'ping'
-    console.log("Ping received!");
-    message.channel.send("pong!"); // Send a message back to the same channel
+
+  // Only respond to text messages
+  if (typeof message.content !== "string") return;
+
+  // Check if the message starts with 'ping' and respond with 'pong'
+  if (message.content.trim().startsWith("ping")) {
+    message.channel.send("pong!");
   }
 });
 
-client.login(""); // Replace this string with your bot token
+// Bot token
+client.login(""); 

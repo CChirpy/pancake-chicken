@@ -1,2 +1,2 @@
 # Pancake Chicken
-A Discord bot featuring a Tamagotchi-like game.
+Pancake Chicken is an AI chatbot designed to function as a virtual pet. It enables players to care for and interact with small digital creatures through a website or Discord integration.

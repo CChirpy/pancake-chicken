@@ -1,7 +1,7 @@
 {
   "name": "pancake-chicken",
-  "version": "1.0.0",
-  "description": "A Discord bot featuring a Tamagotchi-like game.",
+  "version": "1.0.1",
+  "description": "Pancake Chicken is an AI chatbot designed to function as a virtual pet.",
   "main": "scripts/run",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"

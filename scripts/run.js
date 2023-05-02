@@ -1,7 +1,8 @@
 // To run the bot, enter:
 // node scripts/run.js
 
-// Import necessary classes from the 'discord.js' library
+// Import necessary classes
+require('dotenv').config()
 const { Client, GatewayIntentBits } = require('discord.js');
 
 // Create a new instance of the Client class with specific intents
@@ -37,4 +38,4 @@ client.on("messageCreate", (message) => {
 });
 
 // Bot token
-client.login(""); 
+client.login(process.env.TOKEN); 

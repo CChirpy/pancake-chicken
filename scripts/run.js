@@ -1,6 +1,3 @@
-// To run the bot, enter:
-// node scripts/run.js
-
 // Import necessary classes
 require('dotenv').config()
 const { Client, GatewayIntentBits } = require('discord.js');

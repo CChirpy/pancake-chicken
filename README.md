@@ -10,6 +10,9 @@ Pancake Chicken is an AI chatbot designed to function as a virtual pet. It enabl
 ## Setup
 For running the bot locally.
 
+### Requirements
+- [npm](https://docs.npmjs.com/downloading-and-installing-node-js-and-npm), included with [Node.js](https://nodejs.org/en)
+
 ### In the terminal
 1. `nvm use` to switch to the correct Node version.
 2. `npm install` to install dependencies.

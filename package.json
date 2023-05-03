@@ -2,7 +2,7 @@
   "name": "pancake-chicken",
   "version": "1.0.0",
   "description": "Pancake Chicken is an AI chatbot designed to function as a virtual pet.",
-  "main": "scripts/run",
+  "main": "server/run",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "node scripts/run.js"

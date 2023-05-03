@@ -9,9 +9,11 @@
   },
   "keywords": [],
   "author": "Connie Huang",
-  "license": "UNLICENSED",
+  "license": "GPL-3.0-or-later",
   "dependencies": {
     "discord.js": "^14.7.1",
-    "dotenv": "^16.0.3"
+    "dotenv": "^16.0.3",
+    "ml5": "^0.12.2",
+    "p5": "^1.6.0"
   }
 }

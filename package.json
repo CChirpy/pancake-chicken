@@ -5,7 +5,8 @@
   "main": "server/run",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node scripts/run.js"
+    "start": "node scripts/run.js",
+    "register": "node scripts/commands.js"
   },
   "keywords": [],
   "author": "Connie Huang",

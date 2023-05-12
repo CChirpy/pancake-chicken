@@ -2,47 +2,53 @@
 require('dotenv').config()
 const { Client, GatewayIntentBits } = require('discord.js');
 const { readFileSync } = require('fs');
-const jsonData = readFileSync('./data/preset.json', 'utf8');
+const jsonData = readFileSync('./data/responses.json', 'utf8');
 const { nicknames, responses } = JSON.parse(jsonData);
+var Sentiment = require('sentiment');
+var sentiment = new Sentiment();
 
 // Discord bot client to receive server and message information
 const client = new Client({
-  intents: [
-    GatewayIntentBits.Guilds,
-    GatewayIntentBits.GuildMembers,
-    GatewayIntentBits.GuildMessages,
-    GatewayIntentBits.MessageContent
-  ]
+	intents: [
+		GatewayIntentBits.Guilds,
+		GatewayIntentBits.GuildMembers,
+		GatewayIntentBits.GuildMessages,
+		GatewayIntentBits.MessageContent
+	]
 });
 
 // When the bot is ready, log a message in the console
 client.on('ready', () => {
-  console.log(`Logged in as ${client.user.tag}!`);
+	console.log(`Logged in as ${client.user.tag}!`);
 });
 
 // Listen for messages, log messages, ignore bots, 
 client.on('messageCreate', (message) => {
-  if (message.author.bot) return;
-  console.log('Message received:', message.content);
-  if (typeof message.content !== 'string') return;
-  const messageContent = message.content.toLowerCase().trim();
+	if (message.author.bot) return;
+	console.log('Message received:', message.content);
+	if (typeof message.content !== 'string') return;
 
-  // Iterate over keywords and select random response
-  if (nicknames.some(keyword => messageContent.includes(keyword))) {
-    const randomResponse = responses[Math.floor(Math.random() * responses.length)];
-    message.channel.send(randomResponse);
-  }
+	const messageContent = message.content.toLowerCase().trim();
+
+	var result = sentiment.analyze(messageContent);
+	console.dir(result);
+
+	// Iterate over keywords and select random response
+	if (nicknames.some(keyword => messageContent.includes(keyword))) {
+		const randomResponse = responses[Math.floor(Math.random() * responses.length)];
+		message.channel.send(randomResponse);
+	}
 });
 
 // Listen for interactions, log commands, ignore non-slash-commands
 client.on('interactionCreate', (interaction) => {
-  if (!interaction.isChatInputCommand()) return;
-  console.log('Command received: /' + interaction.commandName);
+	if (!interaction.isChatInputCommand()) return;
+	console.log('Command received: /' + interaction.commandName);
 
-  // Check and respond to commands
-  if (interaction.commandName === 'ping') {
-    interaction.reply('Pong!')
-  }
+	// Check and respond to commands
+	if (interaction.commandName === 'ping') {
+		interaction.reply('Pong!')
+	}
 });
 
 // Login using the bot token

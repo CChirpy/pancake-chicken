@@ -18,6 +18,7 @@ For running the bot locally.
 
 ### In the files
 1. Rename `.env.example` to `.env` and fill in the required values.
+2. Rename the `data-example` folder to `data`.
 
 ### In the terminal
 1. `nvm use` to switch to the correct Node version.

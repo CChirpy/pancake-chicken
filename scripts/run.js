@@ -22,12 +22,11 @@ client.on('ready', () => {
 	console.log(`Logged in as ${client.user.tag}!`);
 });
 
-// Listen for messages, log messages, ignore bots, 
+// Listen for messages, log messages, ignore bots, clean message
 client.on('messageCreate', (message) => {
 	if (message.author.bot) return;
 	console.log(`Message received: ${message.content}`);
 	if (typeof message.content !== 'string') return;
-
 	const messageContent = message.content.toLowerCase().trim();
 
 	// Iterate over keywords and select random response
@@ -42,11 +41,11 @@ client.on('interactionCreate', (interaction) => {
 	if (!interaction.isChatInputCommand()) return;
 	console.log(`Command received: /${interaction.commandName}`);
 
-	// Check and respond to commands
+	// Ping pong
 	if (interaction.commandName === 'ping') {
 		interaction.reply('Pong!')
 	}
-	
+
 	// Takes user input and returns sentiment score.
 	if (interaction.commandName === 'sentiment') {
 		const input = interaction.options.get('input').value;

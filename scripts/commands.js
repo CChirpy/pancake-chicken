@@ -11,14 +11,12 @@ const commands = [
 	{
 		name: 'sentiment',
 		description: 'Takes user input and returns a sentiment score.',
-		options: [
-			{
-				name: 'input',
-				description: 'A word or phrase.',
-				type: ApplicationCommandOptionType.String,
-				required: true
-			}
-		]
+		options: [{
+			name: 'input',
+			description: 'A word or phrase.',
+			type: ApplicationCommandOptionType.String,
+			required: true
+		}]
 	}
 ]
 

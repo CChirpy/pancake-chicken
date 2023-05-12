@@ -1,6 +1,9 @@
-// Load necessary environment variables and classes
+// Load necessary variables and classes
 require('dotenv').config()
 const { Client, GatewayIntentBits } = require('discord.js');
+const { readFileSync } = require('fs');
+const jsonData = readFileSync('./data/preset.json', 'utf8');
+const { nicknames, responses } = JSON.parse(jsonData);
 
 // Discord bot client to receive server and message information
 const client = new Client({
@@ -17,31 +20,23 @@ client.on('ready', () => {
   console.log(`Logged in as ${client.user.tag}!`);
 });
 
-// Listen for messages
+// Listen for messages, log messages, ignore bots, 
 client.on('messageCreate', (message) => {
-
-  // Ignore messages sent by bots
   if (message.author.bot) return;
-
-  // Logs message in console
   console.log('Message received:', message.content);
-
-  // Only respond to text messages
   if (typeof message.content !== 'string') return;
+  const messageContent = message.content.toLowerCase().trim();
 
-  // Check and respond to messages
-  if (message.content.trim().startsWith('ping')) {
-    message.channel.send('pong!');
+  // Iterate over keywords and select random response
+  if (nicknames.some(keyword => messageContent.includes(keyword))) {
+    const randomResponse = responses[Math.floor(Math.random() * responses.length)];
+    message.channel.send(randomResponse);
   }
 });
 
-// Listen for interactions
+// Listen for interactions, log commands, ignore non-slash-commands
 client.on('interactionCreate', (interaction) => {
-
-  // Ignore interactions that are not slash commands
   if (!interaction.isChatInputCommand()) return;
-
-  // Logs slash commands in console
   console.log('Command received: /' + interaction.commandName);
 
   // Check and respond to commands

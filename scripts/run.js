@@ -25,13 +25,10 @@ client.on('ready', () => {
 // Listen for messages, log messages, ignore bots, 
 client.on('messageCreate', (message) => {
 	if (message.author.bot) return;
-	console.log('Message received:', message.content);
+	console.log(`Message received: ${message.content}`);
 	if (typeof message.content !== 'string') return;
 
 	const messageContent = message.content.toLowerCase().trim();
-
-	var result = sentiment.analyze(messageContent);
-	console.dir(result);
 
 	// Iterate over keywords and select random response
 	if (nicknames.some(keyword => messageContent.includes(keyword))) {
@@ -43,11 +40,19 @@ client.on('messageCreate', (message) => {
 // Listen for interactions, log commands, ignore non-slash-commands
 client.on('interactionCreate', (interaction) => {
 	if (!interaction.isChatInputCommand()) return;
-	console.log('Command received: /' + interaction.commandName);
+	console.log(`Command received: /${interaction.commandName}`);
 
 	// Check and respond to commands
 	if (interaction.commandName === 'ping') {
 		interaction.reply('Pong!')
+	}
+	
+	// Takes user input and returns sentiment score.
+	if (interaction.commandName === 'sentiment') {
+		const input = interaction.options.get('input').value;
+		console.log(`Input Received: ${input}`);
+		var result = sentiment.analyze(input).comparative;
+		interaction.reply(`${result}`);
 	}
 });
 

@@ -4,8 +4,8 @@ const { Client, GatewayIntentBits } = require('discord.js');
 const { readFileSync } = require('fs');
 const jsonData = readFileSync('./data/responses.json', 'utf8');
 const { nicknames, responses } = JSON.parse(jsonData);
-var Sentiment = require('sentiment');
-var sentiment = new Sentiment();
+const Sentiment = require('sentiment');
+const sentiment = new Sentiment();
 
 // Discord bot client to receive server and message information
 const client = new Client({
@@ -50,8 +50,8 @@ client.on('interactionCreate', (interaction) => {
 	if (interaction.commandName === 'sentiment') {
 		const input = interaction.options.get('input').value;
 		console.log(`Input Received: ${input}`);
-		var result = sentiment.analyze(input).comparative;
-		interaction.reply(`${result}`);
+		const result = sentiment.analyze(input).comparative.toFixed(2);
+		interaction.reply('```' + `Your input was: ${input} \nPancake Chicken thinks it has a sentiment of: ${result}` + '```');
 	}
 });
 

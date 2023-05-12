@@ -1,34 +1,25 @@
-// Load necessary environment variables and classes
+// Load necessary variables and classes
 require('dotenv').config()
 const { REST, Routes } = require('discord.js');
 
 // Define an array of commands
 const commands = [
-    {
-        name: 'ping',
-        description: 'Pong!'
-    }
+  {
+    name: 'ping',
+    description: 'Replies with pong!',
+  }
 ]
 
 // Discord REST API client
 const rest = new REST().setToken(process.env.TOKEN);
 
-// Register the commands with Discord
+// Register the commands with the Discord API, logs error if it fails
 (async () => {
-    try {
-        // Log a message indicating that registration is starting
-        console.log('Registering slash commands...');
-
-        // Register the commands with the Discord API
-        await rest.put(
-            Routes.applicationGuildCommands(process.env.CLIENT_ID, process.env.GUILD_ID),
-            { body: commands }
-        )
-
-        // Log a message indicating that registration was successful
-        console.log('Slash commands registered successfully!');
-    } catch (error) {
-        // Log an error message if registration fails
-        console.log(`There was an error: ${error}`);
-    }
+  try {
+    console.log('Registering slash commands...');
+    await rest.put(Routes.applicationGuildCommands(process.env.CLIENT_ID, process.env.GUILD_ID), { body: commands });
+    console.log('Slash commands registered successfully!');
+  } catch (error) {
+    console.log(`There was an error: ${error}`);
+  }
 })();

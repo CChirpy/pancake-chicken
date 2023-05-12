@@ -1,8 +1,8 @@
 # Pancake Chicken
 
-🚧 This project is still under development!
+🚧 This project is still under development! 🚧
 
-Pancake Chicken is a chatbot designed to function as a virtual pet. It enables players to care for and interact with small digital creatures through a website or Discord integration.
+Pancake Chicken is a chatbot designed to function as a virtual pet.
 
 ## Tools
 - [Node.js](https://nodejs.org/en)

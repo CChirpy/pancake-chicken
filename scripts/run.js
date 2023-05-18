@@ -27,11 +27,11 @@ client.on('messageCreate', (message) => {
 	if (message.author.bot) return;
 	console.log(`Message received: ${message.content}`);
 	if (typeof message.content !== 'string') return;
-	const messageContent = message.content.toLowerCase().trim();
+	let messageContent = message.content.toLowerCase().trim();
 
 	// Iterate over keywords and select random response
 	if (nicknames.some(keyword => messageContent.includes(keyword))) {
-		const randomResponse = responses[Math.floor(Math.random() * responses.length)];
+		let randomResponse = responses[Math.floor(Math.random() * responses.length)];
 		message.channel.send(randomResponse);
 	}
 });
@@ -48,9 +48,9 @@ client.on('interactionCreate', (interaction) => {
 
 	// Takes user input and returns sentiment score.
 	if (interaction.commandName === 'sentiment') {
-		const input = interaction.options.get('input').value;
+		let input = interaction.options.get('input').value;
 		console.log(`Input Received: ${input}`);
-		const result = sentiment.analyze(input).comparative.toFixed(2);
+		let result = sentiment.analyze(input).comparative.toFixed(2);
 		interaction.reply('```' + `Your input was: ${input} \nPancake Chicken thinks it has a sentiment of: ${result}` + '```');
 	}
 });

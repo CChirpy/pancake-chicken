@@ -9,15 +9,27 @@ const commands = [
 		description: 'Replies with pong!',
 	},
 	{
+		name: 'help',
+		description: 'Get a list of what Pancake Chicken can do!',
+	},
+	{
 		name: 'sentiment',
 		description: 'Takes user input and returns a sentiment score.',
 		options: [{
 			name: 'input',
 			description: 'A word or phrase.',
 			type: ApplicationCommandOptionType.String,
-			required: true
+			required: true,
 		}]
-	}
+	},
+	{
+		name: 'uptime',
+		description: '(WIP) Returns the uptime of this bot for this week.',
+	},
+	{
+		name: 'age',
+		description: '(WIP) Returns the age of the current chicken.',
+	},
 ]
 
 // Discord REST API client

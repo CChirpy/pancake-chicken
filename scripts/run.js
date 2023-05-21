@@ -41,17 +41,40 @@ client.on('interactionCreate', (interaction) => {
 	if (!interaction.isChatInputCommand()) return;
 	console.log(`Command received: /${interaction.commandName}`);
 
-	// Ping pong
+	// ping
 	if (interaction.commandName === 'ping') {
-		interaction.reply('Pong!')
+		interaction.reply('Pong!');
 	}
 
-	// Takes user input and returns sentiment score.
+	// sentiment [input]
 	if (interaction.commandName === 'sentiment') {
 		let input = interaction.options.get('input').value;
 		console.log(`Input Received: ${input}`);
 		let result = sentiment.analyze(input).comparative.toFixed(2);
-		interaction.reply('```' + `Your input was: ${input} \nPancake Chicken thinks it has a sentiment of: ${result}` + '```');
+		let analysis = result > 0 ? 'positive' : result < 0 ? 'negative' : 'neutral';
+		interaction.reply(
+			'Your input was: `' + input + '` \n' +
+			'Pancake Chicken thinks it has a `' + analysis + '` sentiment. (`' + result + '`)'
+		);
+	}
+
+	// help
+	if (interaction.commandName === 'help') {
+		interaction.reply(
+			'Below is a list of implemented and planned features: \n' +
+			'1. Pancake Chicken responds to its name. \n' +
+			'2. Care for Pancake Chicken: `/feed`, `/play`, `/clean` \n' +
+			'3. Utility commands: `/sentiment`, `/uptime`, `/age`, `/remind`');
+	}
+
+	// uptime
+	if (interaction.commandName === 'uptime') {
+		interaction.reply('...bawk? \n `This feature is still under development.`');
+	}
+
+	// age
+	if (interaction.commandName === 'age') {
+		interaction.reply('...bawk? \n `This feature is still under development.`');
 	}
 });
 
